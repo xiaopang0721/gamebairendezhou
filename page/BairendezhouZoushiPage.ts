@@ -3,7 +3,7 @@
 */
 module gamebairendezhou.page {
 	export class BairendezhouZoushiPage extends game.gui.base.Page {
-		private _viewUI: ui.game_ui.bairendezhou.ZouShiTuUI;
+		private _viewUI: ui.nqp.game_ui.bairendezhou.ZouShiTuUI;
 		private _bairendezhouMapInfo: BairendezhouMapInfo;
 		private _gridEditor: GridEditor;
 
@@ -158,7 +158,7 @@ module gamebairendezhou.page {
 		}
 	}
 
-	class RecordRender extends ui.game_ui.bairendezhou.component.HongDianUI {
+	class RecordRender extends ui.nqp.game_ui.bairendezhou.component.HongDianUI {
 		private _game: Game;
 		private _data: any;
 		constructor() {
@@ -179,7 +179,7 @@ module gamebairendezhou.page {
 		}
 	}
 
-	class CardRecordRender extends ui.game_ui.bairendezhou.component.DuiZiUI {
+	class CardRecordRender extends ui.nqp.game_ui.bairendezhou.component.DuiZiUI {
 		private _game: Game;
 		private _data: any;
 		constructor() {

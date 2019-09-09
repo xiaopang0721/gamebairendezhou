@@ -7,7 +7,7 @@ module gamebairendezhou.page {
 	const TYPE_SETTLE_BEISHU: number = 2;
 	export class BairendezhouRulePage extends game.gui.base.Page {
 
-		private _viewUI: ui.game_ui.bairendezhou.BaiRenDeZhou_GuiZeUI;
+		private _viewUI: ui.nqp.game_ui.bairendezhou.BaiRenDeZhou_GuiZeUI;
 
 		constructor(v: Game, onOpenFunc?: Function, onCloseFunc?: Function) {
 			super(v, onOpenFunc, onCloseFunc);
