@@ -16,6 +16,7 @@ module gamebairendezhou.page {
 			this._asset = [
 				Path_game_bairendezhou.atlas_game_ui + "bairendezhou.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
+				PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
 			];
 		}

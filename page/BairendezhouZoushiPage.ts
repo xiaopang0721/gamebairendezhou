@@ -36,10 +36,10 @@ module gamebairendezhou.page {
 				"8": PathGameTongyong.ui_tongyong_general + "plsz_8.png",
 				"9": PathGameTongyong.ui_tongyong_general + "plsz_9.png",
 			}
-			this._gridEditor = new GridEditor(31.93, 31.7, 20, 6, textureTypes, false)
-			this._gridEditor.x = 63;
-			this._gridEditor.y = 102;
-			this._viewUI.list_record0.parent.addChild(this._gridEditor);
+			this._gridEditor = new GridEditor(36.8, 34.3, 20, 6, textureTypes, false)
+            this._gridEditor.x = 1.5;
+            this._gridEditor.y = -0.5;
+			this._viewUI.box_road.addChild(this._gridEditor);
 		}
 
 		// 页面打开时执行函数

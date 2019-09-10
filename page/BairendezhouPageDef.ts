@@ -25,11 +25,7 @@ module gamebairendezhou.page {
 		static myinit(str: string) {
 			super.myinit(str);
 			BairendezhouiClip.init();
-			if (WebConfig.baseplatform == PageDef.BASE_PLATFORM_TYPE_NQP) {
-				PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU] = BairendezhouPage;
-			} else {
-				// PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU] = BairendezhouPageOld;
-			}
+			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU] = BairendezhouPage;
 			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_MAP] = BairendezhouMapPage;
 			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_BEGIN] = BairendezhouBeginPage;
 			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_RULE] = BairendezhouRulePage;
