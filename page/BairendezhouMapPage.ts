@@ -195,8 +195,7 @@ module gamebairendezhou.page {
         }
 
         private onUpdateAniDeal(): void {
-            this._viewUI.ani_deal.ani1.stop();
-            this._viewUI.ani_deal.visible = false;
+            this._viewUI.paixieRight.ani2.gotoAndStop(0);
         }
 
         //断线重连开牌
@@ -360,8 +359,7 @@ module gamebairendezhou.page {
                 this.onUpdateStatus();
                 this.updateOnline();
                 if (!this._bairendezhouMgr.isReconnect) {
-                    this._viewUI.ani_deal.ani1.stop();
-                    this._viewUI.ani_deal.visible = false;
+                    this._viewUI.paixieRight.ani2.gotoAndStop(0);
                 }
             }
         }
@@ -896,8 +894,7 @@ module gamebairendezhou.page {
                     })
                     break;
                 case MAP_STATUS.PLAY_STATUS_PUSH_CARD:// 发牌阶段
-                    this._viewUI.ani_deal.visible = true;
-                    this._viewUI.ani_deal.ani1.play(0, true);
+                    this._viewUI.paixieRight.ani2.gotoAndStop(0);
                     break;
                 case MAP_STATUS.PLAY_STATUS_BET:// 下注阶段
                     if (Math.floor(this._bairendezhouMapInfo.GetCountDown() - this._game.sync.serverTimeBys) >= 14) {
@@ -1424,8 +1421,7 @@ module gamebairendezhou.page {
             this._viewUI.box_time.visible = false;
             this._viewUI.xipai.visible = false;
             this._viewUI.paixieRight.ani_chupai.stop();
-            this._viewUI.ani_deal.ani1.stop();
-            this._viewUI.ani_deal.visible = false;
+            this._viewUI.paixieRight.ani2.gotoAndStop(0);
             this._viewUI.paixieLeft.visible = false;
             this._viewUI.lan_type.visible = false;
             this._viewUI.hong_type.visible = false;
@@ -1554,7 +1550,7 @@ module gamebairendezhou.page {
                 this._chipTotalList = [];
                 this._seatUIList = [];
                 this._viewUI.paixieRight.ani_chupai.stop();
-                this._viewUI.ani_deal.ani1.stop();
+                this._viewUI.paixieRight.ani2.gotoAndStop(0);
                 this._viewUI.kaipaiLan.ani_kaipai && this._viewUI.kaipaiLan.ani_kaipai.off(LEvent.COMPLETE, this, this.onKaiPaiAniDealOver);
                 this._viewUI.kaipaiHong.ani_kaipai && this._viewUI.kaipaiHong.ani_kaipai.off(LEvent.COMPLETE, this, this.onKaiPaiAniDealOver);
                 if (this._bairendezhouMgr) {

@@ -169,7 +169,7 @@ module gamebairendezhou.manager {
 			for (let i = 0; i < DEAR_CARD_ROUND; i++) {
 				let index = i == 2 ? PUBLIC_CARD_COUNT : BairendezhouMgr.EACH_CARD_NUM
 				for (let j = 0; j < index; j++) {
-					Laya.timer.once(200 * count, this, () => {
+					Laya.timer.once(120 * count, this, () => {
 						this._game.playSound(PathGameTongyong.music_tongyong + "fapai.mp3", false);
 						let card = allcards[j * BairendezhouMgr.EACH_CARD_NUM + i] as BairendezhouData;
 						//公共牌
