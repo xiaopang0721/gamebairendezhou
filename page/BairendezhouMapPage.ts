@@ -904,7 +904,7 @@ module gamebairendezhou.page {
                     })
                     break;
                 case MAP_STATUS.PLAY_STATUS_PUSH_CARD:// 发牌阶段
-                    this._viewUI.paixieRight.ani2.gotoAndStop(0);
+                    this._viewUI.paixieRight.ani2.play(0, true);
                     break;
                 case MAP_STATUS.PLAY_STATUS_BET:// 下注阶段
                     if (Math.floor(this._bairendezhouMapInfo.GetCountDown() - this._game.sync.serverTimeBys) >= 14) {
@@ -1143,7 +1143,7 @@ module gamebairendezhou.page {
                 TongyongPageDef.ins.alertRecharge(StringU.substitute("老板，您的金币少于{0}哦~\n补充点金币去大杀四方吧~", PLAYER_LEAST_MONEY), () => {
                     this._game.uiRoot.general.open(DatingPageDef.PAGE_CHONGZHI);
                 }, () => {
-                }, true,TongyongPageDef.TIPS_SKIN_STR['cz']);
+                }, true, TongyongPageDef.TIPS_SKIN_STR['cz']);
                 return;
             }
             if (!this._curChip || this._curChip > money) {
@@ -1430,7 +1430,7 @@ module gamebairendezhou.page {
             this._viewUI.txt_id.visible = false;
             this._viewUI.box_time.visible = false;
             this._viewUI.xipai.visible = false;
-            this._viewUI.paixieRight.ani_chupai.stop();
+            this._viewUI.paixieRight.ani_chupai.gotoAndStop(12);
             this._viewUI.paixieRight.ani2.gotoAndStop(0);
             this._viewUI.paixieLeft.visible = false;
             this._viewUI.lan_type.visible = false;
