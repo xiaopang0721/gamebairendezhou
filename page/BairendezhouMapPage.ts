@@ -119,6 +119,7 @@ module gamebairendezhou.page {
                 }
                 this.onUpdateMapInfo();
             }
+            this._viewUI.btn_spread.left = this._game.isFullScreen ? 25 : 10;
             this._viewUI.mouseThrough = true;
             this._game.playMusic(Path_game_bairendezhou.music_bairendezhou + "brdz_bgm.mp3");
         }
