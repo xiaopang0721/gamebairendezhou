@@ -31,10 +31,6 @@ module gamebairendezhou.page {
 		// 页面打开时执行函数
 		protected onOpen(): void {
 			super.onOpen();
-			this._viewUI.panal_wanfa.vScrollBarSkin = "";
-			this._viewUI.panal_wanfa.vScrollBar.autoHide = true;
-			this._viewUI.panal_wanfa.vScrollBar.elasticDistance = 140;
-			//更新滚动条最大滚动数值
 			this._viewUI.btn_tab.selectHandler = Handler.create(this, this.selectHandler, null, false);
 			if (this.dataSource) {
 				this._viewUI.btn_tab.selectedIndex = this.dataSource;
