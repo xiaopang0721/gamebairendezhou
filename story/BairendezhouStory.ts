@@ -98,11 +98,12 @@ module gamebairendezhou.story {
 			return card;
 		}
 
-		//打开公共牌
+		//打开前两张和公共牌
 		private openPublicCards() {
 			let count = 1;
 			let allCards = this._bairendezhouMgr.initCard(this._openCards);
-			for (let index = 2 * BairendezhouMgr.EACH_CARD_NUM; index < allCards.length; index++) {
+			for (let index = 0; index < allCards.length; index++) {
+				if (index == 1 || index == 3) continue;
 				Laya.timer.once(500 * count, this, () => {
 					this._bairendezhouMgr.setValue(allCards[index], index);
 					if (index == allCards.length - 1) {
