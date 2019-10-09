@@ -549,9 +549,6 @@ module gamebairendezhou.page {
                     if (this._battleIndex < i) {
                         this._battleIndex = i;
                         this._cardsArr = this._cardsArr.concat(info);
-                        if (this._cardsArr.length >= 2) {
-                            this.onUpdatePeilv();
-                        }
                     }
                 }
                 if (info instanceof gamecomponent.object.BattleInfoAreaBet) {
@@ -712,27 +709,6 @@ module gamebairendezhou.page {
                 this._areaKuangUIList[index].ani1.stop();
                 this._areaKuangUIList[index].visible = false;
             });
-        }
-
-        //更新赔率
-        private onUpdatePeilv(): void {
-            if (!this._cardsArr) return;
-            if (!this._cardsArr.length) return;
-            let lanCard = this._cardsArr[0].Cards[0];
-            let hongCard = this._cardsArr[1].Cards[0];
-            let lanCardVal = this._bairendezhouMgr.getCardValue(lanCard);
-            let hongCardVal = this._bairendezhouMgr.getCardValue(hongCard);
-            let lessNum = Math.abs(lanCardVal - hongCardVal);
-            let num = 2;
-            if (lanCardVal > hongCardVal) {
-                this._lannum = num - 0.01 * lessNum;
-                this._hongnum = num + 0.01 * lessNum;
-            } else if (lanCardVal < hongCardVal) {
-                this._lannum = num + 0.01 * lessNum;
-                this._hongnum = num - 0.01 * lessNum;
-            }
-            this._viewUI.txt_beilv1.text = "x" + this._lannum.toString();
-            this._viewUI.txt_beilv0.text = "x" + this._hongnum.toString();
         }
 
         //结算飘筹码
@@ -1411,9 +1387,6 @@ module gamebairendezhou.page {
             this._viewUI.kaipaiHong.visible = false;
             this._viewUI.kaipaiHong.ani_kaipai.stop();
             this._viewUI.kaipaiHong.ani_kaipai.on(LEvent.COMPLETE, this, this.onKaiPaiAniDealOver, [2]);
-            //赔率
-            this._viewUI.txt_beilv0.text = "x2"
-            this._viewUI.txt_beilv1.text = "x2"
 
             this._viewUI.list_record0.itemRender = this.createChildren("game_ui.bairendezhou.component.zoushiUI", RecordRender);
             this._viewUI.list_record0.renderHandler = new Handler(this, this.renderHandler1);
@@ -1486,9 +1459,6 @@ module gamebairendezhou.page {
             //开牌动作
             this._viewUI.lan_type.visible = false;
             this._viewUI.hong_type.visible = false;
-            //赔率
-            this._viewUI.txt_beilv0.text = "x2"
-            this._viewUI.txt_beilv1.text = "x2"
         }
 
         private resetData(): void {
