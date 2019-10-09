@@ -93,7 +93,7 @@ module gamebairendezhou.story {
 
 		createObj() {
 			let card = this._game.sceneObjectMgr.createOfflineObject(SceneRoot.CARD_MARK, BairendezhouData) as BairendezhouData;
-			card.pos = new Vector2(956, 215); //牌发出来的位置
+			card.pos = new Vector2(965, 200); //牌发出来的位置
 			card.rotateAngle = 60;
 			return card;
 		}
@@ -101,12 +101,12 @@ module gamebairendezhou.story {
 		//打开前两张和公共牌
 		private openPublicCards() {
 			let count = 1;
-			let allCards = this._bairendezhouMgr.initCard(this._openCards);
-			for (let index = 0; index < allCards.length; index++) {
+			this._bairendezhouMgr.initCard(this._openCards);
+			for (let index = 0; index < this._bairendezhouMgr.allCards.length; index++) {
 				if (index == 1 || index == 3) continue;
 				Laya.timer.once(500 * count, this, () => {
-					this._bairendezhouMgr.setValue(allCards[index], index);
-					if (index == allCards.length - 1) {
+					this._bairendezhouMgr.setValue(index);
+					if (index == this._bairendezhouMgr.allCards.length - 1) {
 						Laya.timer.once(500, this, () => {
 							this._bairendezhouMgr.event(BairendezhouMgr.OPEN_ANI);
 						})
@@ -183,16 +183,14 @@ module gamebairendezhou.story {
 					this.onPushCards(this._dealCards, true);
 					this._bairendezhouMgr.isReDrawCards = true;
 				}
-			} else {
-
 			}
 			//断线重连：开牌阶段及之后进来直接开掉所有牌及显示牌型
 			if (this._bairendezhouMgr.isReconnect && this._curStatus >= MAP_STATUS.PLAY_STATUS_SHOW_CARD && !this._bairendezhouMgr.isMoveCards) {
 				this._bairendezhouMgr.isReconnect = false;
 				let count = 0;
-				let _cards = this._bairendezhouMgr.initCard(this._openCards);
-				for (let i = 0; i < _cards.length; i++) {
-					this._bairendezhouMgr.setValue1(_cards[i], i);
+				this._bairendezhouMgr.initCard(this._openCards);
+				for (let i = 0; i < this._bairendezhouMgr.allCards.length; i++) {
+					this._bairendezhouMgr.setValue1(i);
 					count++;
 					if (count >= this._openCards.length) {
 						Laya.timer.once(1000, this, () => {

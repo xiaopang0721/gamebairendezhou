@@ -98,42 +98,30 @@ module gamebairendezhou.manager {
 			return cardValue;
 		}
 
+		//场景上的牌重新赋值
 		initCard(all_val: Array<number>) {
 			let card_arr = [];
 			for (let i: number = 0; i < all_val.length; i++) {
-				let card: BairendezhouData;
-				card = new BairendezhouData();
+				let card = this._cards[i]
 				card.Init(all_val[i]);
-				card_arr.push(card);
-				//换牌,重新赋值
-				if (i == 1 || i == 3) {
-					this._cards[i].Init(all_val[i]);
-				}
-			}
-			return card_arr;
-		}
-
-		setValue(_cards, i) {
-			if (!this._cards.length) return;
-			if (!_cards) return;
-			let card = this._cards[i] as BairendezhouData;
-			if (card) {
-				card.Init(_cards.GetVal());
 				if (i > 3) {
 					card.index = i;
 				}
 				card.sortScore = i;
+			}
+		}
+
+		setValue(i) {
+			if (!this._cards.length) return;
+			let card = this._cards[i] as BairendezhouData;
+			if (card) {
 				card.fanpai();
 			}
 		}
 
-		setValue1(_cards, i) {
+		setValue1(i) {
 			if (!this._cards.length) return;
-			if (!_cards) return;
 			let card = this._cards[i] as BairendezhouData;
-			card.Init(_cards.GetVal());
-			card.index = i;
-			card.sortScore = i;
 			card.fanpai1();
 		}
 
