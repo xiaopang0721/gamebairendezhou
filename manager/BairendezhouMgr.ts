@@ -119,7 +119,9 @@ module gamebairendezhou.manager {
 			let card = this._cards[i] as BairendezhouData;
 			if (card) {
 				card.Init(_cards.GetVal());
-				card.index = i;
+				if (i > 3) {
+					card.index = i;
+				}
 				card.sortScore = i;
 				card.fanpai();
 			}
@@ -150,12 +152,7 @@ module gamebairendezhou.manager {
 						card.myOwner(i);
 						card.index = j;
 						card.sortScore = -j;
-						if (j == 0 && (i == 0 || i == 1)) {
-							card.scaleX = 1;
-							card.isShow = true;
-						} else {
-							card.scaleX = -1;
-						}
+						card.scaleX = -1;
 					}
 				}
 			}
