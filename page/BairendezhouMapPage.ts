@@ -419,7 +419,6 @@ module gamebairendezhou.page {
                 let money = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2);
                 this._viewUI.main_player.txt_money.text = money.toString();
                 let mainIdx = mainUnit.GetIndex();
-                this._viewUI.main_player.img_txk.visible = TongyongUtil.getIsHaveQiFu(mainUnit, this._game.sync.serverTimeBys);
                 this._viewUI.main_player.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(mainUnit.GetHeadKuangImg(), 2);
                 //祈福成功 头像上就有动画
                 if (qifu_index && mainIdx == qifu_index) {
