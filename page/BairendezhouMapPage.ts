@@ -405,7 +405,9 @@ module gamebairendezhou.page {
             this._viewUI.main_player.txt_money.text = money.toString();
             this._viewUI.main_player.img_qifu.visible = TongyongUtil.getIsHaveQiFu(mainPlayer, this._game.sync.serverTimeBys);
             this._viewUI.main_player.img_icon.skin = TongyongUtil.getHeadUrl(mainPlayer.playerInfo.headimg, 2);
-            this._viewUI.main_player.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(mainPlayer.playerInfo.headKuang, 2);
+            this._viewUI.main_player.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(mainPlayer.playerInfo.headKuang);
+            this._viewUI.main_player.img_vip.visible = mainPlayer.playerInfo.vip_level > 0;
+            this._viewUI.main_player.img_vip.skin = TongyongUtil.getVipUrl(mainPlayer.playerInfo.vip_level);
         }
 
         private onUpdateUnit(qifu_index?: number) {
@@ -419,7 +421,9 @@ module gamebairendezhou.page {
                 let money = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2);
                 this._viewUI.main_player.txt_money.text = money.toString();
                 let mainIdx = mainUnit.GetIndex();
-                this._viewUI.main_player.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(mainUnit.GetHeadKuangImg(), 2);
+                this._viewUI.main_player.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(mainUnit.GetHeadKuangImg());
+                this._viewUI.main_player.img_vip.visible = mainUnit.GetVipLevel() > 0;
+                this._viewUI.main_player.img_vip.skin = TongyongUtil.getVipUrl(mainUnit.GetVipLevel());
                 //祈福成功 头像上就有动画
                 if (qifu_index && mainIdx == qifu_index) {
                     this._viewUI.main_player.qifu_type.visible = true;
@@ -1266,7 +1270,9 @@ module gamebairendezhou.page {
                     seat.txt_name.fontSize = 15;
                     seat.txt_money.text = EnumToString.getPointBackNum(unit.GetMoney(), 2).toString();
                     seat.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
-                    seat.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(unit.GetHeadKuangImg(), 2);
+                    seat.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(unit.GetHeadKuangImg());
+                    seat.img_vip.visible = unit.GetVipLevel() > 0;
+                    seat.img_vip.skin = TongyongUtil.getVipUrl(unit.GetVipLevel());
                     //祈福成功 头像上就有动画
                     if (qifu_index && unitIndex == qifu_index) {
                         seat.qifu_type.visible = true;
@@ -1294,6 +1300,7 @@ module gamebairendezhou.page {
                     seat.img_qifu.visible = false;
                     seat.qifu_type.visible = false;
                     seat.img_txk.visible = false;
+                    seat.img_vip.visible = false;
                 }
             }
         }
