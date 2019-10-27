@@ -1253,7 +1253,7 @@ module gamebairendezhou.page {
             for (let i = 0; i < this._seatUIList.length; i++) {
                 let unitIndex = this._unitSeated[i][0];
                 let unit = this._game.sceneObjectMgr.getUnitByIdx(unitIndex);
-                let seat = this._seatUIList[i] as ui.nqp.game_ui.tongyong.TouXiangWzUI;
+                let seat = this._seatUIList[i];
                 if (unit) {
                     seat.img_txk.visible = true;
                     seat.txt_name.text = getMainPlayerName(unit.GetName());
@@ -1347,7 +1347,7 @@ module gamebairendezhou.page {
             }
             //座位
             for (let i: number = 0; i < 6; i++) {
-                this._seatUIList.push(this._viewUI["seat" + i] as ui.nqp.game_ui.tongyong.TouXiangWzUI);
+                this._seatUIList.push(this._viewUI["seat" + i]);
                 this._seatUIList[i].clip_money.visible = false;
                 this._seatUIList[i].on(LEvent.CLICK, this, this.onSelectSeat, [i]);
             }
