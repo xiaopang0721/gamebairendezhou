@@ -645,6 +645,7 @@ module gamebairendezhou.page {
             chip.visible = false;
             this._chipTotalList[targetIdx - 1].push(chip);
             if (this._bairendezhouMgr.isReconnect && this._curStatus != MAP_STATUS.PLAY_STATUS_BET) {
+                chip.visible = true;
                 chip.drawChip();
             }
             else {
