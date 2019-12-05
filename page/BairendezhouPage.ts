@@ -162,11 +162,11 @@ module gamebairendezhou.page {
 			if (!this._player) return;
 			this._playerInfo = this._player.playerInfo;
 			switch (target) {
-				case this._viewUI.btn_join:
-					let maplv = TongyongUtil.getJoinMapLv(BairendezhouPageDef.GAME_NAME, this._playerInfo.money);
-					if (!maplv) return;
-					this._game.sceneObjectMgr.intoStory(BairendezhouPageDef.GAME_NAME, maplv.toString(), true);
-					break;
+				// case this._viewUI.btn_join:
+				// 	let maplv = TongyongUtil.getJoinMapLv(BairendezhouPageDef.GAME_NAME, this._playerInfo.money);
+				// 	if (!maplv) return;
+				// 	this._game.sceneObjectMgr.intoStory(BairendezhouPageDef.GAME_NAME, maplv.toString(), true);
+				// 	break;
 			}
 		}
 	}
