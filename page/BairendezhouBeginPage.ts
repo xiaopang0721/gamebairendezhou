@@ -3,7 +3,7 @@
 */
 module gamebairendezhou.page {
 	export class BairendezhouBeginPage extends game.gui.base.Page {
-		private _viewUI: ui.nqp.game_ui.bairendezhou.GoUI;
+		private _viewUI: ui.ajqp.game_ui.bairendezhou.GoUI;
 
 		constructor(v: Game, onOpenFunc?: Function, onCloseFunc?: Function) {
 			super(v, onOpenFunc, onCloseFunc);

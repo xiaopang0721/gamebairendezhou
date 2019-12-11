@@ -7,24 +7,28 @@ module gamebairendezhou.data {
 			super();
 		}
 		//筹码起始位置(主玩家，其他玩家，荷官位置，座位0，座位1，座位2，座位3，座位4，座位5) 
-		private _chipStart = [[191, 600], [70, 657], [640, 98], 
+		private _chipStart = [[191, 600], [70, 657], [640, 98],
 		[70, 185], [70, 345], [70, 505], [1185, 185], [1185, 345], [1185, 505]];
 		//筹码终点位置
-		private _chipEnd = [[341, 272], [936, 272], [633, 300], [212, 422], [425, 422], [638, 422], [850, 422], [1063, 422]];
+		private _chipEnd = [[351, 272], [926, 272], [610, 300], [212, 422], [425, 422], [638, 422], [850, 422], [1063, 422]];
 		private _startIndex: number;
 		private _targetIndex: number;
 		public _seatIndex: number;//精灵座位归属
+		private _radiusX: number;//圆形区域X半径说
+		private _radiusY: number;//圆形区域Y半径
 		//初始位置，终点位置，筹码类型，筹码大小，筹码层级
 		setData(startIdx: number, targetIdx: number, type: number, value: number, index: number, unitIndex: number) {
-			this.size = 0.4;
+			this.size = 0.44;
 			this.sortScore = 999 - index;
 			this.pos = new Vector2(this._chipStart[startIdx][0], this._chipStart[startIdx][1]);
 			this._val = value.toString();
 			this._type = type;
 			this._startIndex = startIdx;
 			this._targetIndex = targetIdx - 1;
-			// this.rotateAngle = MathU.randomRange(0, 360);
+			this.rotateAngle = MathU.randomRange(0, 360);
 			this._seatIndex = unitIndex;
+			this._radiusX = this._targetIndex < 2 ? 65 : this._targetIndex == 2 ? 100 : 80;
+			this._radiusY = this._targetIndex < 2 ? 45 : this._targetIndex == 2 ? 20 : 20;
 		}
 
 		sendChip() {
@@ -32,14 +36,8 @@ module gamebairendezhou.data {
 			// 	this.pos = new Vector2();
 			// 	this.pos = new Vector2(this._chipStart[this._startIndex][0], this._chipStart[this._startIndex][1]);
 			// }
-			let dstX = 50;
-			let dstY = 50;
-			if (this._targetIndex == 2) {
-				dstX = 100;
-				dstY = 20;
-			}
-			let posX = MathU.randomPointInCicle(new Vector2(this._chipEnd[this._targetIndex][0], this._chipEnd[this._targetIndex][1]), 0, dstX).x;
-			let posY = MathU.randomPointInCicle(new Vector2(this._chipEnd[this._targetIndex][0], this._chipEnd[this._targetIndex][1]), 0, dstY).y;
+			let posX = MathU.randomPointInCicle(new Vector2(this._chipEnd[this._targetIndex][0], this._chipEnd[this._targetIndex][1]), 0, this._radiusX).x;
+			let posY = MathU.randomPointInCicle(new Vector2(this._chipEnd[this._targetIndex][0], this._chipEnd[this._targetIndex][1]), 0, this._radiusY).y;
 			if (!this.targe_pos) {
 				this.targe_pos = new Vector2();
 			}
@@ -60,19 +58,13 @@ module gamebairendezhou.data {
 			let target = isBanker ? this._chipEnd : this._chipStart;
 			this.targe_pos.x = target[index][0];
 			this.targe_pos.y = target[index][1];
-			if(!this.pos) return;
-			super.flyChipBase(500 + count * 15,game);
+			if (!this.pos) return;
+			super.flyChipBase(500 + count * MathU.randomRange(0, 5), game);
 		}
 
 		drawChip() {
-			let dstX = 50;
-			let dstY = 50;
-			if (this._targetIndex == 2) {
-				dstX = 100;
-				dstY = 20;
-			}
-			let posX = MathU.randomPointInCicle(new Vector2(this._chipEnd[this._targetIndex][0], this._chipEnd[this._targetIndex][1]), 0, dstX).x;
-			let posY = MathU.randomPointInCicle(new Vector2(this._chipEnd[this._targetIndex][0], this._chipEnd[this._targetIndex][1]), 0, dstY).y;
+			let posX = MathU.randomPointInCicle(new Vector2(this._chipEnd[this._targetIndex][0], this._chipEnd[this._targetIndex][1]), 0, this._radiusX).x;
+			let posY = MathU.randomPointInCicle(new Vector2(this._chipEnd[this._targetIndex][0], this._chipEnd[this._targetIndex][1]), 0, this._radiusY).y;
 			if (!this.targe_pos) {
 				this.targe_pos = new Vector2();
 			}

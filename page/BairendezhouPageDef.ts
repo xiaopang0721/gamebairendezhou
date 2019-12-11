@@ -10,16 +10,14 @@ module gamebairendezhou.page {
 		static PAGE_BAIRENDEZHOU_MAP: string = "2";
 		//开始下注界面
 		static PAGE_BAIRENDEZHOU_BEGIN: string = "3";
+		//停止下注界面
+		static PAGE_BAIRENDEZHOU_END: string = "4";
+		//走势界面
+		static PAGE_BAIRENDEZHOU_ZOUSHI: string = "5";
+		//结果
+		static PAGE_BAIRENDEZHOU_RESULT: string = "6";
 		//规则界面
 		static PAGE_BAIRENDEZHOU_RULE: string = "101";
-		//战玩家列表界面
-		static PAGE_BAIRENDEZHOU_PLAYER_LIST: string = "8";
-		//停止下注界面
-		static PAGE_BAIRENDEZHOU_END: string = "9";
-		//走势界面
-		static PAGE_BAIRENDEZHOU_ZOUSHI: string = "11";
-		//结果
-		static PAGE_BAIRENDEZHOU_RESULT: string = "12";
 
 
 		static myinit(str: string) {
@@ -29,31 +27,34 @@ module gamebairendezhou.page {
 			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_MAP] = BairendezhouMapPage;
 			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_BEGIN] = BairendezhouBeginPage;
 			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_RULE] = BairendezhouRulePage;
-			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_PLAYER_LIST] = BairendezhouPlayerListPage;
 			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_END] = BairendezhouEndPage;
 			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_ZOUSHI] = BairendezhouZoushiPage;
 			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_RESULT] = BairendezhouResultPage;
 
 			this["__needLoadAsset"] = [
-				PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "pai.atlas",
+				DatingPath.atlas_dating_ui + "qifu.atlas",
+                Path_game_bairendezhou.atlas_game_ui + "bairendezhou.atlas",
+                Path_game_bairendezhou.atlas_game_ui_bairendezhou_effect + "zy.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "pai.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "logo.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "tuichu.atlas",
-				DatingPath.atlas_dating_ui + "qifu.atlas",
-				Path_game_bairendezhou.atlas_game_ui + "bairendezhou.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/suiji.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/fapai_1.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong + "general/effect/kaipai.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "chongzhi.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "nyl.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "general/effect/suiji.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "general/effect/fapai_1.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "general/effect/xipai.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong + "general/effect/kaipai.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong_general + "anniu.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong_general_effect + "ksyx.atlas",
+                PathGameTongyong.atlas_game_ui_tongyong_general_effect + "ksxz.atlas",
+
 				Path.custom_atlas_scene + 'card.atlas',
 				Path.custom_atlas_scene + 'chip.atlas',
-
 				PathGameTongyong.ui_tongyong_sk + "HeGuan.sk",
 				PathGameTongyong.ui_tongyong_sk + "HeGuan.png",
-
 				Path.map + 'pz_bairendezhou.png',
 				Path.map_far + 'bg_bairendezhou.jpg'
 			]

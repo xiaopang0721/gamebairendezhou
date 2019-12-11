@@ -3,7 +3,7 @@
 */
 module gamebairendezhou.page {
 	export class BairendezhouZoushiPage extends game.gui.base.Page {
-		private _viewUI: ui.nqp.game_ui.bairendezhou.ZouShiTuUI;
+		private _viewUI: ui.ajqp.game_ui.bairendezhou.ZouShiTuUI;
 		private _bairendezhouMapInfo: BairendezhouMapInfo;
 		private _gridEditor: GridEditor;
 
@@ -14,7 +14,7 @@ module gamebairendezhou.page {
 			this._isNeedDuang = false;
 			this._asset = [
 				Path_game_bairendezhou.atlas_game_ui + "bairendezhou.atlas",
-				PathGameTongyong.atlas_game_ui_tongyong+ "general.atlas",
+				PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
 			];
 		}
 
@@ -22,7 +22,7 @@ module gamebairendezhou.page {
 		protected init(): void {
 			this._viewUI = this.createView('game_ui.bairendezhou.ZouShiTuUI');
 			this.addChild(this._viewUI);
-			
+
 			let textureTypes = {
 				"L": PathGameTongyong.ui_tongyong_general + "tu_lq.png",//蓝
 				"H": PathGameTongyong.ui_tongyong_general + "tu_hq.png",//红
@@ -36,9 +36,9 @@ module gamebairendezhou.page {
 				"8": PathGameTongyong.ui_tongyong_general + "plsz_8.png",
 				"9": PathGameTongyong.ui_tongyong_general + "plsz_9.png",
 			}
-			this._gridEditor = new GridEditor(36.8, 34.3, 20, 6, textureTypes, false)
-            this._gridEditor.x = 1.5;
-            this._gridEditor.y = -0.5;
+			this._gridEditor = new GridEditor(38.9, 38.9, 20, 6, textureTypes, false)
+			this._gridEditor.x = 1.2;
+			this._gridEditor.y = 1.4;
 			this._viewUI.box_road.addChild(this._gridEditor);
 		}
 
@@ -158,7 +158,7 @@ module gamebairendezhou.page {
 		}
 	}
 
-	class RecordRender extends ui.nqp.game_ui.bairendezhou.component.HongDianUI {
+	class RecordRender extends ui.ajqp.game_ui.bairendezhou.component.HongDianUI {
 		private _game: Game;
 		private _data: any;
 		constructor() {
@@ -179,7 +179,7 @@ module gamebairendezhou.page {
 		}
 	}
 
-	class CardRecordRender extends ui.nqp.game_ui.bairendezhou.component.DuiZiUI {
+	class CardRecordRender extends ui.ajqp.game_ui.bairendezhou.component.DuiZiUI {
 		private _game: Game;
 		private _data: any;
 		constructor() {

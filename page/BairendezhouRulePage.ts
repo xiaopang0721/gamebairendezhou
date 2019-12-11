@@ -7,7 +7,7 @@ module gamebairendezhou.page {
 	const TYPE_SETTLE_BEISHU: number = 2;
 	export class BairendezhouRulePage extends game.gui.base.Page {
 
-		private _viewUI: ui.nqp.game_ui.bairendezhou.BaiRenDeZhou_GuiZeUI;
+		private _viewUI: ui.ajqp.game_ui.bairendezhou.BaiRenDeZhou_GuiZeUI;
 
 		constructor(v: Game, onOpenFunc?: Function, onCloseFunc?: Function) {
 			super(v, onOpenFunc, onCloseFunc);
@@ -31,6 +31,9 @@ module gamebairendezhou.page {
 		// 页面打开时执行函数
 		protected onOpen(): void {
 			super.onOpen();
+			this._viewUI.panel_paixing.vScrollBarSkin = "";
+			this._viewUI.panel_paixing.vScrollBar.autoHide = true;
+			this._viewUI.panel_paixing.vScrollBar.elasticDistance = 100;
 			this._viewUI.btn_tab.selectHandler = Handler.create(this, this.selectHandler, null, false);
 			if (this.dataSource) {
 				this._viewUI.btn_tab.selectedIndex = this.dataSource;
@@ -40,8 +43,8 @@ module gamebairendezhou.page {
 		}
 
 		private selectHandler(index: number): void {
+			this._viewUI.panel_paixing.visible = this._viewUI.btn_tab.selectedIndex == TYPE_CARD_TYPE;
 			this._viewUI.img_wanfa.visible = this._viewUI.btn_tab.selectedIndex == TYPE_WANFA_JIESHAO;
-			this._viewUI.img_paixing.visible = this._viewUI.btn_tab.selectedIndex == TYPE_CARD_TYPE;
 			this._viewUI.img_beishu.visible = this._viewUI.btn_tab.selectedIndex == TYPE_SETTLE_BEISHU;
 		}
 
