@@ -33,6 +33,7 @@ module gamebairendezhou.page {
 
 			this["__needLoadAsset"] = [
 				DatingPath.atlas_dating_ui + "qifu.atlas",
+				PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
                 Path_game_bairendezhou.atlas_game_ui + "bairendezhou.atlas",
                 Path_game_bairendezhou.atlas_game_ui_bairendezhou_effect + "zy.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
