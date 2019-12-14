@@ -378,30 +378,6 @@ module ui.ajqp.game_ui.bairendezhou {
 }
 
 module ui.ajqp.game_ui.bairendezhou {
-    export class JieSuanUI extends View {
-		public txt_result0:laya.display.Text;
-		public txt_result3:laya.display.Text;
-		public txt_result5:laya.display.Text;
-		public txt_result2:laya.display.Text;
-		public txt_result6:laya.display.Text;
-		public txt_result1:laya.display.Text;
-		public txt_result4:laya.display.Text;
-		public txt_result7:laya.display.Text;
-		public txt_result8:laya.display.Text;
-
-        public static  uiView:any ={"type":"View","props":{"width":1280,"height":720},"child":[{"type":"JieSuan_gr","props":{"centerX":0,"runtime":"ui.ajqp.game_ui.tongyong.JieSuan_grUI"}},{"type":"Box","props":{"width":1280,"height":720,"centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5},"child":[{"type":"Image","props":{"y":289,"x":745,"skin":"tongyong_ui/game_ui/tongyong/general/tu_d6.png"}},{"type":"Image","props":{"y":393,"x":332,"skin":"tongyong_ui/game_ui/tongyong/general/tu_d5.png"}},{"type":"Image","props":{"y":336,"x":332,"skin":"tongyong_ui/game_ui/tongyong/general/tu_d5.png"}},{"type":"Image","props":{"y":290,"x":513,"skin":"tongyong_ui/game_ui/tongyong/general/tu_d6.png"}},{"type":"Image","props":{"y":292,"x":386,"width":117,"skin":"tongyong_ui/game_ui/tongyong/general/tu_k3.png","sizeGrid":"10,10,10,10","height":34}},{"type":"Text","props":{"y":297,"x":294,"wordWrap":true,"text":"蓝：","leading":6,"height":20,"fontSize":18,"color":"#f6d9a6"}},{"type":"Text","props":{"y":298,"x":396,"wordWrap":true,"width":100,"var":"txt_result0","text":"000000.00","leading":6,"height":20,"fontSize":18,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"y":349,"x":386,"width":117,"skin":"tongyong_ui/game_ui/tongyong/general/tu_k3.png","sizeGrid":"10,10,10,10","height":34}},{"type":"Text","props":{"y":354,"x":294,"wordWrap":true,"text":"一对：","leading":6,"height":20,"fontSize":18,"color":"#f6d9a6"}},{"type":"Text","props":{"y":355,"x":396,"wordWrap":true,"width":100,"var":"txt_result3","text":"000000.00","leading":6,"height":20,"fontSize":18,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"y":406,"x":386,"width":117,"skin":"tongyong_ui/game_ui/tongyong/general/tu_k3.png","sizeGrid":"10,10,10,10","height":34}},{"type":"Text","props":{"y":412,"x":294,"wordWrap":true,"text":"三条/顺子：","leading":6,"height":20,"fontSize":18,"color":"#f6d9a6"}},{"type":"Text","props":{"y":413,"x":396,"wordWrap":true,"width":100,"var":"txt_result5","text":"000000.00","leading":6,"height":20,"fontSize":18,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"y":292,"x":618,"width":117,"skin":"tongyong_ui/game_ui/tongyong/general/tu_k3.png","sizeGrid":"10,10,10,10","height":34}},{"type":"Text","props":{"y":297,"x":526,"wordWrap":true,"width":41,"text":"和：","leading":6,"height":20,"fontSize":18,"color":"#f6d9a6"}},{"type":"Text","props":{"y":298,"x":628,"wordWrap":true,"width":100,"var":"txt_result2","text":"000000.00","leading":6,"height":20,"fontSize":18,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"y":406,"x":618,"width":117,"skin":"tongyong_ui/game_ui/tongyong/general/tu_k3.png","sizeGrid":"10,10,10,10","height":34}},{"type":"Text","props":{"y":412,"x":526,"wordWrap":true,"width":108,"text":"同花/葫芦：","leading":6,"height":20,"fontSize":18,"color":"#f6d9a6"}},{"type":"Text","props":{"y":413,"x":628,"wordWrap":true,"width":100,"var":"txt_result6","text":"000000.00","leading":6,"height":20,"fontSize":18,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"y":292,"x":868,"width":117,"skin":"tongyong_ui/game_ui/tongyong/general/tu_k3.png","sizeGrid":"10,10,10,10","height":34}},{"type":"Text","props":{"y":297,"x":758,"wordWrap":true,"width":41,"text":"红：","leading":6,"height":20,"fontSize":18,"color":"#f6d9a6"}},{"type":"Text","props":{"y":298,"x":868,"wordWrap":true,"width":100,"var":"txt_result1","text":"000000.00","leading":6,"height":20,"fontSize":18,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"y":349,"x":868,"width":117,"skin":"tongyong_ui/game_ui/tongyong/general/tu_k3.png","sizeGrid":"10,10,10,10","height":34}},{"type":"Text","props":{"y":354,"x":758,"wordWrap":true,"width":61,"text":"两对：","leading":6,"height":20,"fontSize":18,"color":"#f6d9a6"}},{"type":"Text","props":{"y":355,"x":868,"wordWrap":true,"width":100,"var":"txt_result4","text":"000000.00","leading":6,"height":20,"fontSize":18,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"y":406,"x":868,"width":117,"skin":"tongyong_ui/game_ui/tongyong/general/tu_k3.png","sizeGrid":"10,10,10,10","height":34}},{"type":"Text","props":{"y":412,"x":758,"wordWrap":true,"width":130,"text":"金刚/同花顺：","leading":6,"height":20,"fontSize":18,"color":"#f6d9a6"}},{"type":"Text","props":{"y":413,"x":868,"wordWrap":true,"width":100,"var":"txt_result7","text":"000000.00","leading":6,"height":20,"fontSize":18,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"y":478,"x":618,"width":117,"skin":"tongyong_ui/game_ui/tongyong/general/tu_k3.png","sizeGrid":"10,10,10,10","height":34}},{"type":"Text","props":{"y":483,"x":526,"wordWrap":false,"width":102,"text":"输赢合计：","leading":6,"height":20,"fontSize":18,"color":"#fa7946","align":"center"}},{"type":"Text","props":{"y":484,"x":628,"wordWrap":true,"width":100,"var":"txt_result8","text":"000000.00","leading":6,"height":20,"fontSize":18,"color":"#ffffff","align":"center"}}]}]};
-        constructor(){ super()}
-        createChildren():void {
-        			View.regComponent("ui.ajqp.game_ui.tongyong.JieSuan_grUI",ui.ajqp.game_ui.tongyong.JieSuan_grUI);
-			View.regComponent("Text",laya.display.Text);
-
-            super.createChildren();
-            this.createView(ui.ajqp.game_ui.bairendezhou.JieSuanUI.uiView);
-        }
-    }
-}
-
-module ui.ajqp.game_ui.bairendezhou {
     export class StopUI extends View {
 		public ani1:Laya.FrameAnimation;
 

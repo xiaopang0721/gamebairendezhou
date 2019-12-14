@@ -187,7 +187,10 @@ module gamebairendezhou.page {
         //帧间隔心跳
         deltaUpdate() {
             let bool = this._curStatus == MAP_STATUS.PLAY_STATUS_BET || this._curStatus == MAP_STATUS.PLAY_STATUS_SETTLE_SHOW;
-            if (!bool) return;
+            if (!bool) {
+                this._viewUI.box_time.visible = false;
+                return;
+            }
             if (!this._bairendezhouMapInfo) return;
             let curTime = this._game.sync.serverTimeBys;
             let time = Math.floor(this._bairendezhouMapInfo.GetCountDown() - curTime);
@@ -1021,7 +1024,7 @@ module gamebairendezhou.page {
                         let rand = MathU.randomRange(1, 4);
                         this._game.playSound(StringU.substitute(PathGameTongyong.music_tongyong + "lose{0}.mp3", rand), true);
                     }
-                    Laya.timer.once(2200, this, () => {
+                    Laya.timer.once(2500, this, () => {
                         this.onUpdateSettleMoney();
                         if (this._clipResult && this._clipResult.length > 0) {
                             for (let i = 0; i < this._clipResult.length; i++) {
