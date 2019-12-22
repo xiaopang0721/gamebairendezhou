@@ -127,7 +127,6 @@ module gamebairendezhou.page {
                 }
                 this.onUpdateMapInfo();
             }
-            this._viewUI.box_left.left = this._game.isFullScreen ? 23 : 3;
             this._viewUI.mouseThrough = true;
             this._game.playMusic(Path_game_bairendezhou.music_bairendezhou + "brdz_bgm.mp3");
         }
@@ -156,6 +155,8 @@ module gamebairendezhou.page {
             this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_UNIT_ACTION, this, this.onUpdateUnit);
             this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_MAPINFO_CHANGE, this, this.onUpdateMapInfo);
             this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_UNIT_QIFU_TIME_CHANGE, this, this.onUpdateUnit);
+            this._game.sceneObjectMgr.on(SceneObjectMgr.EVENT_MAIN_UNIT_CHANGE, this, this.onUpdateChipGrey);
+
             this._game.sceneObjectMgr.on(BairendezhouMapInfo.EVENT_STATUS_CHECK, this, this.onUpdateStatus);
             this._game.sceneObjectMgr.on(BairendezhouMapInfo.EVENT_BATTLE_CHECK, this, this.onUpdateBattle);
             // this._game.sceneObjectMgr.on(BairendezhouMapInfo.EVENT_GAME_NO, this, this.onUpdateGameNo);//牌局号
@@ -171,6 +172,24 @@ module gamebairendezhou.page {
 
             this.onUpdateUnitOffline();
             this.onUpdateSeatedList();
+        }
+
+        protected layout(): void {
+            super.layout();
+            if (this._viewUI) {
+                //全面屏
+                if (this._game.isFullScreen) {
+                    this._viewUI.box_top_left.left = 14 + 56;
+                    this._viewUI.box_room_left.left = 105 + 56;
+                    this._viewUI.box_top_right.right = 28 + 56;
+                    this._viewUI.box_bottom_right.right = 12 + 56;
+                } else {
+                    this._viewUI.box_top_left.left = 14;
+                    this._viewUI.box_room_left.left = 105;
+                    this._viewUI.box_top_right.right = 28;
+                    this._viewUI.box_bottom_right.right = 12;
+                }
+            }
         }
 
         private _curDiffTime: number;
@@ -1017,15 +1036,15 @@ module gamebairendezhou.page {
                     break;
                 case MAP_STATUS.PLAY_STATUS_SETTLE_SHOW:// 结算结果展示
                     this.flyChipEffect();
-                    if (this._mainPlayerBenefit >= 0) {
-                        let rand = MathU.randomRange(1, 3);
-                        this._game.playSound(StringU.substitute(PathGameTongyong.music_tongyong + "win{0}.mp3", rand), true);
-                    } else if (this._mainPlayerBenefit < 0) {
-                        let rand = MathU.randomRange(1, 4);
-                        this._game.playSound(StringU.substitute(PathGameTongyong.music_tongyong + "lose{0}.mp3", rand), true);
-                    }
-                    Laya.timer.once(2500, this, () => {
+                    Laya.timer.once(2800, this, () => {
                         this.onUpdateSettleMoney();
+                        if (this._mainPlayerBenefit >= 0) {
+                            let rand = MathU.randomRange(1, 3);
+                            this._game.playSound(StringU.substitute(PathGameTongyong.music_tongyong + "win{0}.mp3", rand), true);
+                        } else if (this._mainPlayerBenefit < 0) {
+                            let rand = MathU.randomRange(1, 4);
+                            this._game.playSound(StringU.substitute(PathGameTongyong.music_tongyong + "lose{0}.mp3", rand), true);
+                        }
                         if (this._clipResult && this._clipResult.length > 0) {
                             for (let i = 0; i < this._clipResult.length; i++) {
                                 let info = this._clipResult[i];
@@ -1258,13 +1277,15 @@ module gamebairendezhou.page {
 
         //筹码是否置灰（是否下注阶段）
         private onChipDisabled(isBetState: boolean): void {
-            this.onUpdateChipGrey(isBetState);
+            this.onUpdateChipGrey();
             this._viewUI.btn_repeat.disabled = !isBetState;
             if (isBetState) {
                 let index = this._chipArr.indexOf(this._curChip);
                 for (let i: number = 0; i < this._chipUIList.length; i++) {
                     Laya.Tween.to(this._chipUIList[i], { y: i == index ? this._curChipY - 10 : this._curChipY }, 300);
                     this._chipUIList[i].img0.visible = this._chipUIList[i].img1.visible = i == index;
+                    !this._chipUIList[i].disabled && (this._chipUIList[i].mouseEnabled = true);
+                    this._chipUIList[i].alpha = 1;
                     if (i == index) {
                         this._chipUIList[i].ani1.play(0, true);
                     } else {
@@ -1273,23 +1294,22 @@ module gamebairendezhou.page {
                 }
             } else {
                 for (let i: number = 0; i < this._chipUIList.length; i++) {
-                    Laya.Tween.to(this._chipUIList[i], { y: this._curChipY + 10 }, 300);
-                    this._chipUIList[i].disabled = true;
+                    Laya.Tween.to(this._chipUIList[i], { y: this._curChipY + 20 }, 300);
+                    !this._chipUIList[i].disabled && (this._chipUIList[i].mouseEnabled = false);
+                    this._chipUIList[i].alpha = 0.75;
                     this._chipUIList[i].ani1.gotoAndStop(0);
                     this._chipUIList[i].img0.visible = this._chipUIList[i].img1.visible = false;
                 }
             }
         }
 
-        private onUpdateChipGrey(isBetState: boolean) {
+        private onUpdateChipGrey() {
             if (!this._game.sceneObjectMgr.mainUnit) return;
-            if (!isBetState) return;
             let money: number = this._game.sceneObjectMgr.mainUnit.GetMoney();
             for (let i = 0; i < this._chipUIList.length; i++) {
                 let index = this._chipUIList.length - 1 - i;
                 if (money < this._chipArr[index]) {
                     this._chipUIList[index].disabled = true;
-                    this._chipUIList[index].y = this._curChipY;
                 } else {
                     this._chipUIList[index].disabled = false;
                 }
@@ -1574,6 +1594,7 @@ module gamebairendezhou.page {
                 this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_UNIT_QIFU_TIME_CHANGE, this, this.onUpdateUnit);
                 this._game.sceneObjectMgr.off(BairendezhouMapInfo.EVENT_STATUS_CHECK, this, this.onUpdateStatus);
                 this._game.sceneObjectMgr.off(BairendezhouMapInfo.EVENT_BATTLE_CHECK, this, this.onUpdateBattle);
+                this._game.sceneObjectMgr.off(SceneObjectMgr.EVENT_MAIN_UNIT_CHANGE, this, this.onUpdateChipGrey);
 
                 // this._game.sceneObjectMgr.off(BairendezhouMapInfo.EVENT_GAME_NO, this, this.onUpdateGameNo);//牌局号
                 this._game.sceneObjectMgr.off(BairendezhouMapInfo.EVENT_COUNT_DOWN, this, this.onUpdateCountDown);//倒计时时间戳更新
