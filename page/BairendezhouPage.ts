@@ -10,6 +10,7 @@ module gamebairendezhou.page {
 		private _player: any;
 		private _playerInfo: any;
 		private _bairendezhouHudMgr: BairendezhouHudMgr;
+		private _avatar: AvatarUIShow;
 
 		constructor(v: Game, onOpenFunc?: Function, onCloseFunc?: Function) {
 			super(v, onOpenFunc, onCloseFunc);
@@ -22,6 +23,7 @@ module gamebairendezhou.page {
 				PathGameTongyong.atlas_game_ui_tongyong + "logo.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong_general + "anniu.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong_general_effect + "anniug.atlas",
+				Path_game_bairendezhou.ui_bairendezhou_effect_sk + "bairendezhou.png",
 			];
 			this._isNeedDuang = false;
 		}
@@ -43,6 +45,11 @@ module gamebairendezhou.page {
 		protected onOpen(): void {
 			super.onOpen();
 			(this._viewUI.view as TongyongHudPage).onOpen(this._game, BairendezhouPageDef.GAME_NAME);
+			if (!this._avatar) {
+				this._avatar = new AvatarUIShow();
+				this._viewUI.box_sk.addChild(this._avatar);
+			}
+			this._avatar.loadSkeleton(Path_game_bairendezhou.ui_bairendezhou_effect_sk + "bairendezhou", 224, 353);
 
 			let datas = [];
 			for (let i = 0; i < BairendezhouPage.BET_MAX.length; i++) {
@@ -66,6 +73,11 @@ module gamebairendezhou.page {
 					this._bairendezhouHudMgr.clear();
 					this._bairendezhouHudMgr = null;
 				}
+				if (this._avatar) {
+					this._avatar.clear();
+					this._avatar.destroy();
+					this._avatar = null;
+				}
 				this._game.stopMusic();
 				Laya.Tween.clearAll(this);
 			}
@@ -80,6 +92,9 @@ module gamebairendezhou.page {
 
 		//帧心跳
 		update(diff: number) {
+			if (this._avatar) {
+				this._avatar.onDraw();
+			}
 			if (this._bairendezhouHudMgr) {
 				this._bairendezhouHudMgr.update(diff);
 			}

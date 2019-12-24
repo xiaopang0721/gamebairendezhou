@@ -36,6 +36,7 @@ module gamebairendezhou.page {
 				PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
                 Path_game_bairendezhou.atlas_game_ui + "bairendezhou.atlas",
                 Path_game_bairendezhou.atlas_game_ui_bairendezhou_effect + "zy.atlas",
+				Path_game_bairendezhou.ui_bairendezhou_effect_sk + "bairendezhou.png",
                 PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "pai.atlas",
                 PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
