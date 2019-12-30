@@ -179,12 +179,12 @@ module gamebairendezhou.page {
                 //全面屏
                 if (this._game.isFullScreen) {
                     this._viewUI.box_top_left.left = 14 + 56;
-                    this._viewUI.box_room_left.left = 105 + 56;
+                    this._viewUI.box_room_left.left = 115 + 56;
                     this._viewUI.box_top_right.right = 28 + 56;
                     this._viewUI.box_bottom_right.right = 12 + 56;
                 } else {
                     this._viewUI.box_top_left.left = 14;
-                    this._viewUI.box_room_left.left = 105;
+                    this._viewUI.box_room_left.left = 115;
                     this._viewUI.box_top_right.right = 28;
                     this._viewUI.box_bottom_right.right = 12;
                 }
@@ -443,7 +443,7 @@ module gamebairendezhou.page {
                 let headImg = mainUnit.GetHeadImg();
                 this._viewUI.main_player.txt_name.text = getMainPlayerName(mainUnit.GetName());
                 if (this._curStatus != MAP_STATUS.PLAY_STATUS_SETTLE) {
-                    this._viewUI.main_player.txt_money.text = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2).toString();
+                    this._viewUI.main_player.txt_money.text = EnumToString.getPointBackNum(TongyongUtil.getMoneyChange(mainUnit.GetMoney()), 2).toString();
                 }
                 let mainIdx = mainUnit.GetIndex();
                 this._viewUI.main_player.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(mainUnit.GetHeadKuangImg());
@@ -493,7 +493,7 @@ module gamebairendezhou.page {
                     seat.txt_name.text = getMainPlayerName(unit.GetName());
                     seat.txt_name.fontSize = 15;
                     if (this._curStatus != MAP_STATUS.PLAY_STATUS_SETTLE) {
-                        seat.txt_money.text = EnumToString.getPointBackNum(unit.GetMoney(), 2).toString();
+                        seat.txt_money.text = EnumToString.getPointBackNum(TongyongUtil.getMoneyChange(unit.GetMoney()), 2).toString();
                     }
                     seat.img_icon.skin = TongyongUtil.getHeadUrl(unit.GetHeadImg(), 2);
                     seat.img_txk.skin = TongyongUtil.getTouXiangKuangUrl(unit.GetHeadKuangImg());
@@ -532,7 +532,7 @@ module gamebairendezhou.page {
             if (!this._bairendezhouMapInfo) return;
             let mainUnit = this._game.sceneObjectMgr.mainUnit;
             if (mainUnit) {
-                let money = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2);
+                let money = EnumToString.getPointBackNum(TongyongUtil.getMoneyChange(mainUnit.GetMoney()), 2);
                 this._viewUI.main_player.txt_money.text = money.toString();
             }
             let seatedList = this._bairendezhouMapInfo.GetSeatedList();
@@ -547,7 +547,7 @@ module gamebairendezhou.page {
                 let unit = this._game.sceneObjectMgr.getUnitByIdx(unitIndex);
                 let seat = this._seatUIList[i];
                 if (unit) {
-                    seat.txt_money.text = EnumToString.getPointBackNum(unit.GetMoney(), 2).toString();
+                    seat.txt_money.text = EnumToString.getPointBackNum(TongyongUtil.getMoneyChange(unit.GetMoney()), 2).toString();
                 }
             }
         }
@@ -619,7 +619,7 @@ module gamebairendezhou.page {
         private updateMoney(): void {
             let mainUnit = this._game.sceneObjectMgr.mainUnit;
             if (mainUnit) {
-                let money = EnumToString.getPointBackNum(mainUnit.GetMoney(), 2);
+                let money = EnumToString.getPointBackNum(TongyongUtil.getMoneyChange(mainUnit.GetMoney()), 2);
                 this._viewUI.main_player.txt_money.text = money.toString();
             }
         }
@@ -1165,7 +1165,7 @@ module gamebairendezhou.page {
                 }
                 total += this._rebetList[i];
             }
-            if (total > this._game.sceneObjectMgr.mainUnit.GetMoney()) {
+            if (total > TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney())) {
                 this._game.uiRoot.topUnder.showTips("老板,您的金币不够重复下注啦~");
                 return;
             }
@@ -1229,7 +1229,7 @@ module gamebairendezhou.page {
                     return;
                 }
             }
-            let money = this._game.sceneObjectMgr.mainUnit.GetMoney();
+            let money = TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney());
             let betBefore = 0;
             for (let i = 0; i < 8; i++) {
                 betBefore += this._betMainList[i];
@@ -1266,7 +1266,7 @@ module gamebairendezhou.page {
 
         //选择筹码
         private onSelectChip(index: number): void {
-            if (this._game.sceneObjectMgr.mainUnit && this._game.sceneObjectMgr.mainUnit.GetMoney() < this._chipArr[0]) {
+            if (this._game.sceneObjectMgr.mainUnit && TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney()) < this._chipArr[0]) {
                 this._curChip = -1;
                 for (let i: number = 0; i < this._chipUIList.length; i++) {
                     this._chipUIList[i].y = this._curChipY;
@@ -1291,7 +1291,7 @@ module gamebairendezhou.page {
         private onChipDisabled(isBetState: boolean): void {
             this._viewUI.btn_repeat.disabled = !isBetState;
             if (isBetState) {
-                if (this._curChip == -1 && this._game.sceneObjectMgr.mainUnit.GetMoney() >= this._chipArr[0]) {
+                if (this._curChip == -1 && TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney()) >= this._chipArr[0]) {
                     this._curChip = this._chipArr[0];
                 }
                 Laya.Tween.to(this._viewUI.btn_repeat, { y: this._btnRepeatY }, 300);
@@ -1324,7 +1324,7 @@ module gamebairendezhou.page {
         private _isTweenOver: boolean = false;
         private onUpdateChipGrey() {
             if (!this._game.sceneObjectMgr.mainUnit) return;
-            let money: number = this._game.sceneObjectMgr.mainUnit.GetMoney();
+            let money: number = TongyongUtil.getMoneyChange(this._game.sceneObjectMgr.mainUnit.GetMoney());
             let curMaxChipIndex: number = -1;
             for (let i = 0; i < this._chipUIList.length; i++) {
                 let index = this._chipUIList.length - 1 - i;
@@ -1351,7 +1351,7 @@ module gamebairendezhou.page {
         private onSelectSeat(index: number): void {
             let mainUnit = this._game.sceneObjectMgr.mainUnit;
             if (!mainUnit) return;
-            if (mainUnit.GetMoney() < this._seatlimit) {
+            if (TongyongUtil.getMoneyChange(mainUnit.GetMoney()) < this._seatlimit) {
                 this._game.uiRoot.topUnder.showTips("金币不足");
                 return;
             }
