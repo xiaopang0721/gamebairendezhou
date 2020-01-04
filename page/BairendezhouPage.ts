@@ -16,6 +16,7 @@ module gamebairendezhou.page {
 			super(v, onOpenFunc, onCloseFunc);
 			this._asset = [
 				Path_game_bairendezhou.atlas_game_ui + "bairendezhou.atlas",
+				Path_game_bairendezhou.ui_bairendezhou_effect_sk + "bairendezhou.png",
 				PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "touxiang.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "hud.atlas",
@@ -23,7 +24,6 @@ module gamebairendezhou.page {
 				PathGameTongyong.atlas_game_ui_tongyong + "logo.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong_general + "anniu.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong_general_effect + "anniug.atlas",
-				Path_game_bairendezhou.ui_bairendezhou_effect_sk + "bairendezhou.png",
 			];
 			this._isNeedDuang = false;
 		}
