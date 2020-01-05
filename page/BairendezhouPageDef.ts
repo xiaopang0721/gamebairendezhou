@@ -32,7 +32,6 @@ module gamebairendezhou.page {
 			PageDef._pageClassMap[BairendezhouPageDef.PAGE_BAIRENDEZHOU_RESULT] = BairendezhouResultPage;
 
 			this["__needLoadAsset"] = [
-				DatingPath.atlas_dating_ui + "qifu.atlas",
                 Path_game_bairendezhou.atlas_game_ui + "bairendezhou.atlas",
                 Path_game_bairendezhou.atlas_game_ui_bairendezhou_effect + "zy.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "qifu.atlas",
