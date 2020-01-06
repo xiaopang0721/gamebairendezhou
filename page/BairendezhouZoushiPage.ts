@@ -13,8 +13,9 @@ module gamebairendezhou.page {
 			this._isClickBlack = true;
 			this._isNeedDuang = false;
 			this._asset = [
-				Path_game_bairendezhou.atlas_game_ui + "bairendezhou.atlas",
+				PathGameTongyong.atlas_game_ui_tongyong + "dating.atlas",
 				PathGameTongyong.atlas_game_ui_tongyong + "general.atlas",
+				Path_game_bairendezhou.atlas_game_ui + "bairendezhou.atlas",
 			];
 		}
 
